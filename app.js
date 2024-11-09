@@ -9,7 +9,7 @@ async function getUserProfile (){
         } 
         else {
             reject(`Error in Loading profile, profile = ${profile}`); 
-        }}, 1000); 
+        }}, 1300); 
 
     });
 }
@@ -17,22 +17,22 @@ getUserProfile()
 .then(profile => console.log("Profile loaded:", profile))  
 .catch(error => console.error(error));  
 
-async function getPosts(postId){
+async function getPosts(postID){
     return new Promise ((resolve, reject) => {
         let post = true;
-        if (postId === 3) { //* faking an error 
+        if (postID === 3) { //* faking an error 
             post = false; 
           }
-        console.log(`User's Post ${postId} is Loading...`);
+        console.log(`User's Post ${postID} is Loading...`);
 
         setTimeout(() => {
             if (post){
-                resolve(`Post ${postId}: content`);
+                resolve(`Post ${postID}: content`);
             }
             else{
-                reject(`Error in loading this user's post. Fail to upload post ${postId}. Post is ${post}. `);
+                reject(`Error in loading this user's post. Fail to upload post ${postID}. Post is ${post}. `);
             }
-        }, 1000);
+        }, 1400);
     })
 }
 getPosts(1)
@@ -52,9 +52,31 @@ getPosts(1)
     console.error(error);  
   });
 
-async function getComments(){
+async function getComments(commentID){
+    return new Promise ((resolve, reject) => {
+        let comment = Math.random();
+        
+        console.log(`User's comment ${commentID} is Loading...`);
 
-
+        setTimeout(() => {
+            if (comment > 1){
+                resolve(`Comment ${commentID}: content`);
+            }
+            else{
+                reject(`Error in loading this user's post. Fail to upload comment ${commentID}. `);
+            }
+        }, 1500);
+    })
 }
+
+Promise.all([getComments(1), getComments(2), getComments(3)])
+ .then(results => {
+    results.forEach(comment => {
+        console.log(comment);
+    });
+ })
+ .catch(error => {
+    console.error(error);
+ });
 
 
