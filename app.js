@@ -54,12 +54,12 @@ getPosts(1)
 
 async function getComments(commentID){
     return new Promise ((resolve, reject) => {
-        let comment = Math.random();
+        let comment = Math.random(); //for making random number to make random chances
         
         console.log(`User's comment ${commentID} is Loading...`);
 
         setTimeout(() => {
-            if (comment > 1){
+            if (comment > 1){ // makes random errors/successes
                 resolve(`Comment ${commentID}: content`);
             }
             else{
