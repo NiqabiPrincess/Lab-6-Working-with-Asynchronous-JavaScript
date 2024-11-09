@@ -20,9 +20,9 @@ async function getUserProfile (){
 async function getPosts(postID){
     return new Promise ((resolve, reject) => {
         let post = true;
-        /*if (postID === 3) { //* faking an error 
+        if (postID === 3) { //* faking an error 
             post = false; 
-          } */
+          } 
         console.log(`User's Post ${postID} is Loading...`);
 
         setTimeout(() => {
@@ -59,7 +59,7 @@ async function getComments(commentID){
         console.log(`User's comment ${commentID} is Loading...`);
 
         setTimeout(() => {
-            if (comment > 0.15){ // makes random errors/successes
+            if (comment > 0.30){ // makes random errors/successes
                 resolve(`Comment ${commentID}: content`);
             }
             else{
@@ -84,13 +84,27 @@ async function getUserContent() {
         const profile = await getUserProfile();
         console.log("User Profile Loaded:1", profile);
 
+       
+
+        
+    }
+    catch(error){
+        console.error("Error in Profile:", error);
+    }
+
+    try {
         const post1 = await getPosts(1);
         console.log("Post 1 Loaded:", post1);
         const post2 = await getPosts(2);
         console.log("Post 2 Loaded:", post2);
         const post3 = await getPosts(3);
         console.log("Post 3 Loaded:", post3);
+    }
+    catch(error){
+        console.error("Error in Posts:", error);
+    }
 
+    try {
         const comment1 = await getComments(1);
         console.log("Comment 1 Loaded:", comment1);
         const comment2 = await getComments(2);
@@ -98,9 +112,8 @@ async function getUserContent() {
         const comment3 = await getComments(3);
         console.log("Comment 3 Loaded:", comment3);
     }
-    
     catch(error){
-        console.error("Error:", error);
+        console.error("Error in Comments:", error);
     }
     
 }
