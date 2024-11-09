@@ -1,5 +1,3 @@
-
-
 async function getUserProfile (){
     return new Promise((resolve, reject) => {
         let profile = true;
@@ -20,11 +18,24 @@ getUserProfile()
 .catch(error => console.error(error));  
 
 function getPosts(){
+    return new Promise ((resolve, reject) => {
+        let post = true;
+        console.log("User's Posts Loading...");
 
+        setTimeout(() => {
+            if (post){
+                resolve(`Post ${postId}: content`);
+            }
+            else{
+                reject(`Error in loading this user's post. Post is ${post}. Fail to upload post ${postId}.`);
+            }
+
+        }, 1000);
+    })
 
 }
 
-function getComments(){
+async function getComments(){
 
 
 }
